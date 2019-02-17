@@ -8,11 +8,14 @@ from transformer import Transformer
 
 def main():
     parser = argparse.ArgumentParser(description="Formatter from ImageNet xml to Darknet text format")
-    parser.add_argument("-xml", help="Relative location of xml files directory", required=True)
-    parser.add_argument("-out", help="Relative location of output txt files directory", default="out")
+    parser.add_argument("--src", help="Relative location of xml files directory", required=True)
+    parser.add_argument("--xml", help="Relative location of xml files directory")
+    parser.add_argument("--out", help="Relative location of output txt files directory", default="out")
     args = parser.parse_args()
 
-    xml_dir = os.path.join(os.path.dirname(os.path.realpath('__file__')), args.xml)
+    xml_dir = args.src or args.xml
+    xml_dir = os.path.join(os.path.dirname(os.path.realpath('__file__')), xml_dir)
+
     if not os.path.exists(xml_dir):
         print("Provide the correct folder for xml files.")
         sys.exit()

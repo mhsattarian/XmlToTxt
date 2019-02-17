@@ -1,19 +1,23 @@
-# XmlToTxt
-ImageNet file xml format to [Darknet](https://github.com/pjreddie/darknet) text format.
+# Labels: xml to txt
+
+ImageNet (pascalVOC) xml label format to [Darknet](https://github.com/pjreddie/darknet) text format.
 
 ### Installation
+
 ```bash
 sudo pip install -r requirements.txt
 ```
 ### Usage
 
+convert all xml files in `src` folder to txt format and save in `out` directory:
+
 ```bash
-python xmltotxt.py -xml xml -out out
+python xmltotxt.py --src xml --out out
 ```
 
 ### Example
 
-Input xml file.
+Input xml file:
 
 ```xml
 <annotation>
@@ -33,11 +37,16 @@ Input xml file.
 	</object>
 </annotation>
 ```
-Output text file.
+
+Output text file:
+
 ```text
 4 0.052083 0.185185 0.026042 0.018519
 ```
 
-### Motivation
+### Image Annotation
 
-I used [Darknet](https://github.com/pjreddie/darknet) for real-time object detection and classification. Sometimes you need to collect your own trainig dataset for train your model. I collected training dataset images and fine awesome [tool](https://github.com/tzutalin/labelImg) for labeling images. But it generates xml files. So I needed to implement tool which translates from ImageNet xml format to Darknet text format.
+Use [labelImg](https://github.com/tzutalin/labelImg) for image annotaions or checking bounding boxes.
+
+> To check bounding boxes for YOLO  `.txt` label file, place `label.txt` and `image` and `classes.txt` together and open the image using `labelImg`.
+> for VOC format just open the image.
