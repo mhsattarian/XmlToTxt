@@ -2,6 +2,7 @@ import os
 import sys
 from objectmapper import ObjectMapper
 from reader import Reader
+from tqdm import tqdm
 
 
 class Transformer(object):
@@ -18,7 +19,7 @@ class Transformer(object):
         self.write_to_txt(annotations, get_classes)
 
     def write_to_txt(self, annotations, get_classes):
-        for annotation in annotations:
+        for annotation in tqdm(annotations):
             with open(os.path.join(self.out_dir, self.darknet_filename_format(annotation.filename)), "w+") as f:
                 f.write(self.to_darknet_format(annotation, get_classes))
 
